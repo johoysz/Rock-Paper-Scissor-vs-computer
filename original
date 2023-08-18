@@ -1,0 +1,33 @@
+using System;
+class HelloWorld {
+      static string[] options = {"rock", "paper", "scissor"};
+      static string player_choice;
+      static string computer_choice;
+      
+  public static string get_choices() {
+      Console.Write("Enter a choice (rock, paper, scissor): ");
+      player_choice = Console.ReadLine();
+      Random rdm = new Random();
+      int optionIndex = rdm.Next(options.Length);
+      computer_choice = options[optionIndex];
+      return "Player: " + player_choice + " \nComputer: " + computer_choice;
+  }
+  static void game_results() {
+      bool flag;
+          if(player_choice == computer_choice) { flag = true; }
+          else { flag = false; }
+      if(flag == true) { Console.WriteLine("It's a tie!"); }
+      if(flag == false) {
+              if(player_choice == "rock" && computer_choice == "paper" || player_choice == "paper" && computer_choice == "scissor" || player_choice == "scissor" && computer_choice == "rock") {
+                  Console.WriteLine("Computer Wins");
+              }
+              else if(player_choice == "rock" && computer_choice == "scissor" || player_choice == "paper" && computer_choice == "rock" || player_choice == "scissor" && computer_choice == "paper") {
+                  Console.WriteLine("Player Wins");
+              }
+      }
+  }
+  static void Main() {
+      Console.WriteLine(get_choices());
+      game_results();
+  }
+}
